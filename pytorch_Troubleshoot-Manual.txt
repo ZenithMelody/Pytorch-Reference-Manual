@@ -1,0 +1,41 @@
+PYTORCH EMERGENCY REPAIR MANUAL
+
+1. ERROR: "RuntimeError: CUDA out of memory."
+   DIAGNOSIS: Your RTX 2080 Super's 8GB VRAM is full.
+   THE FIX: Lower the "Batch Size" knob (e.g., from 32 to 16 or 8).
+
+2. ERROR: "RuntimeError: Given groups=1, weight of size [32, 3, 3, 3], expected input[1, 1, 128, 128] to have 3 channels, but got 1 instead"
+   DIAGNOSIS: The "Signal Mismatch." You are feeding a Grayscale image into a model expecting RGB Color.
+   THE FIX: Add .convert('RGB') to your image loading logic.
+
+3. ERROR: "RuntimeError: mat1 and mat2 shapes cannot be multiplied (X and Y)"
+   DIAGNOSIS: The "Cable Mismatch." The output of your last Conv layer doesn't match the input of your first Linear layer.
+   THE FIX: Recalculate the input dimension in self.fc1 = nn.Linear(X, 128).
+
+4. ERROR: "NameError: name 'torch' is not defined"
+   DIAGNOSIS: The "Power is Off." You forgot to import the library.
+   THE FIX: Add 'import torch' and 'import torch.nn as nn' at the top.
+
+5. ERROR: "AssertionError: Torch not compiled with CUDA enabled"
+   DIAGNOSIS: You're using the CPU-only version of PyTorch.
+   THE FIX: Re-run: pip install torch --index-url https://download.pytorch.org/whl/cu121.
+
+6. ERROR: "UnicodeEncodeError: 'charmap' codec can't encode character..."
+   DIAGNOSIS: The terminal (PowerShell/CMD) cannot display your Emojis (like ✅ or 🔥).
+   THE FIX: Remove emojis from your print() statements.
+
+7. ERROR: "FileNotFoundError: [Errno 2] No such file or directory"
+   DIAGNOSIS: Python is looking in the wrong folder or the file hasn't been saved to disk.
+   THE FIX: Use 'r' before the path: r"C:\Users\Ryan\Documents..." to handle backslashes.
+
+8. ERROR: "PIL.UnidentifiedImageError: cannot identify image file '.DS_Store'"
+   DIAGNOSIS: Hidden Mac system files are being mistaken for images.
+   THE FIX: Add a check: if file.endswith(('.jpg', '.jpeg', '.png')).
+
+9. ERROR: "ImportError: No module named 'matplotlib'"
+   DIAGNOSIS: The library is installed on a different Python version (e.g., 3.14 instead of 3.11).
+   THE FIX: Run 'py -3.11 -m pip install matplotlib'.
+
+10. ERROR: "RuntimeError: input and target shapes do not match"
+    DIAGNOSIS: Your model output is [Batch, 1] but labels are just [Batch].
+    THE FIX: Use labels.unsqueeze(1) to add the missing dimension during training.

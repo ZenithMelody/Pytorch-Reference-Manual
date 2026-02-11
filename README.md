@@ -18,4 +18,4 @@ pip3 install torch torchvision torchaudio --index-url [https://download.pytorch.
 ```
 
 ## 📄 Troubleshooting
-See my `Troubleshooting-PytorchManual.txt` for the specific errors I ran into and their fixes.
+See my `pytorch_Troubleshoot-Manual.txt` for the specific errors I ran into and their fixes.
